@@ -66,8 +66,8 @@ bool call_graph_laplacian_construction(const std::string& mpi_args,
     const size_t num_nearests, const std::string& args) {
   std::stringstream strm;
   if (mpi_args.length() > 0)
-    strm << "hamster -v " << mpi_args << " ";
-  strm << " /usr/local/hamster/graphlab/release/toolkits/clustering/graph_laplacian_for_sc ";
+    strm << "mpiexec " << mpi_args << " ";
+  strm << "./graph_laplacian_for_sc ";
   strm << " --data=" << filename;
   strm << " --sigma=" << sigma;
   strm << " --similarity-thres=" << epsilon;
@@ -97,7 +97,7 @@ bool call_svd(const std::string& mpi_args, const std::string& filename,
   make_initial_vector_file(filename, num_data+1);
   std::stringstream strm;
   if (mpi_args.length() > 0)
-    strm << "hamster -v " << mpi_args << " ";
+    strm << "mpiexec " << mpi_args << " ";
   strm << svd_dir << "svd " + filename + ".glap";
   strm << " --rows=" << num_data+1;
   strm << " --cols=" << num_data;
@@ -127,7 +127,7 @@ bool call_eigen_vector_normalization(const std::string& mpi_args,
     const std::string& args) {
   std::stringstream strm;
   if (mpi_args.length() > 0)
-    strm << "hamster -v " << mpi_args << " ";
+    strm << "mpiexec " << mpi_args << " ";
   strm << graph_analytics_dir << "eigen_vector_normalization";
   strm << " --data=" << filename;
   strm << " --clusters=" << num_clusters;
@@ -150,7 +150,7 @@ bool call_kmeans(const std::string& mpi_args, const std::string& filename,
   //call svd
   std::stringstream strm;
   if (mpi_args.length() > 0)
-    strm << "hamster " << mpi_args << " ";
+    strm << "mpiexec " << mpi_args << " ";
   strm << kmeans_dir << "kmeans ";
   strm << " --data " << filename << ".compressed";
   strm << " --clusters " << num_clusters;
@@ -173,7 +173,7 @@ bool call_kmeans_as_preprocess(const std::string& mpi_args, const std::string& f
   //call svd
   std::stringstream strm;
   if (mpi_args.length() > 0)
-    strm << "hamster -v " << mpi_args << " ";
+    strm << "mpiexec " << mpi_args << " ";
   strm << kmeans_dir << "kmeans ";
   strm << " --data " << filename;
   strm << " --clusters " << num_clusters;

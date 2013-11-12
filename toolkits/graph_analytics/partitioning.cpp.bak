@@ -62,8 +62,8 @@ bool call_graph_laplacian(const std::string& mpi_args,
     const bool normalized_cut, const bool ratio_cut, const std::string& args) {
   std::stringstream strm;
   if(mpi_args.length() > 0)
-    strm << "hamster -v " << mpi_args << " ";
-  strm << " /usr/local/hamster/graphlab/release/toolkits/graph_analytics/graph_laplacian";
+    strm << "hamster " << mpi_args << " ";
+  strm << "/usr/local/hamster/graphlab/debug/toolkits/graph_analytics/graph_laplacian ";
   strm << " --graph=" << filename;
   strm << " --format=" << format;
 //  strm << " --normalized-cut=" << normalized_cut;
@@ -93,7 +93,7 @@ bool call_svd(const std::string& mpi_args, const std::string& filename,
   make_initial_vector_file(filename, num_data+1);
   std::stringstream strm;
   if(mpi_args.length() > 0)
-    strm << "hamster -v " << mpi_args << " ";
+    strm << "hamster " << mpi_args << " ";
   strm << svd_dir << "svd " + filename + ".glap";
   strm << " --rows=" << num_data+1;
   strm << " --cols=" << num_data;
@@ -122,8 +122,8 @@ bool call_eigen_vector_normalization(const std::string& mpi_args,
     const size_t num_data, const std::string& args) {
   std::stringstream strm;
   if(mpi_args.length() > 0)
-    strm << "hamster -v " << mpi_args << " ";
-  strm << " /usr/local/hamster/graphlab/release/toolkits/graph_analytics/eigen_vector_normalization";
+    strm << "hamster " << mpi_args << " ";
+  strm << "/usr/local/hamster/graphlab/debug/toolkits/graph_analytics/eigen_vector_normalization";
   strm << " --data=" << filename;
   strm << " --clusters=" << num_clusters;
   strm << " --rank=" << rank;
@@ -145,7 +145,7 @@ bool call_kmeans(const std::string& mpi_args, const std::string& filename,
   //call svd
   std::stringstream strm;
   if(mpi_args.length() > 0)
-    strm << "hamster -v " << mpi_args << " ";
+    strm << "hamster " << mpi_args << " ";
   strm << kmeans_dir << "kmeans ";
   strm << " --data " << filename << ".compressed";
   strm << " --clusters " << num_clusters;
